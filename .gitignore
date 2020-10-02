@@ -142,3 +142,6 @@ cython_debug/
 
 # Local python environment
 *_env/
+
+# log DB file
+log.db

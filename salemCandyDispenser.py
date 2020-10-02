@@ -17,9 +17,8 @@ def run():
         try:
             listen(arduino)
         except Exception as e:
-            # print('Error ' + str(e) + ' encountered')
+            print('Error ' + str(e) + ' encountered')
             traceback.print_exc()
-
 
 def listen(arduino):
     # Listen for input
@@ -39,9 +38,6 @@ def listen(arduino):
         # log(trigger, time.now())
     else:
         raise BufferError('Arduino response invalid')
-
-    # Return heartbeat to arduino
-    # arduino.write(heartbeat_value)
 
 def play_sound():
     print('playing sound')

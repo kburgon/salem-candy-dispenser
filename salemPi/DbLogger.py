@@ -1,7 +1,7 @@
 import sqlite3
 import os.path
 
-db_path = "../DB/log.db"
+db_path = "DB/log.db"
 
 def log_trigger():
     initialize = not(os.path.exists(db_path))

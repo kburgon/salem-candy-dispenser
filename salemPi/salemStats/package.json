@@ -1,4 +1,15 @@
 {
-    "name": "salemstats",
-    "main": "index.js"
+  "name": "salemstats",
+  "main": "index.js",
+  "dependencies": {
+    "chart.js": "^2.9.4"
+  },
+  "version": "1.0.0",
+  "description": "Dashboard showing candy dispenser triggers",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "",
+  "license": "ISC"
 }

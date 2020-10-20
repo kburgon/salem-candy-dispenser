@@ -10,4 +10,4 @@ router.get('/', (req, res) => {
 
 app.use('/', router);
 app.listen(process.env.port || port);
-console.log("Running on port ${port}");
+console.log("Running on port " + port);

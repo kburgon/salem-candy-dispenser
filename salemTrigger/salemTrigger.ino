@@ -1,6 +1,7 @@
-const int buttonPin = 2;
+const int buttonPin = 6;
 
 bool sendMsg = true;
+String results = "1";
 
 void setup() {
   // put your setup code here, to run once:
@@ -11,12 +12,13 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  digitalWrite(LED_BUILTIN, HIGH);
+  // digitalWrite(LED_BUILTIN, HIGH);
   if (sendMsg)
   {
     if (digitalRead(buttonPin) == HIGH)
     {
       Serial.println(2);
+      digitalWrite(LED_BUILTIN, HIGH);
     }
     else
     {
@@ -24,11 +26,10 @@ void loop() {
     }
   }
 
-  String results;
   if (Serial.available())
   {
     results = Serial.readString();
-    if (results == "2")
+    if (results == "2" || sendMsg == true)
     {
       sendMsg = false;
     }
@@ -40,5 +41,6 @@ void loop() {
 
   delay(1000);
   digitalWrite(LED_BUILTIN, LOW);
+  results = "1";
   delay(100);
 }

@@ -41,7 +41,7 @@ def listen(arduino):
 
 def play_sound():
     print('playing sound')
-    player.play(player.list_sounds()[0])
+    player.play_rotated_sound()
 
 
 if __name__ == "__main__":

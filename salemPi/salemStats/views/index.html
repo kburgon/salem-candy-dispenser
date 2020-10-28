@@ -6,7 +6,8 @@
     <body>
         <h1>Salem Stats</h1>
         <canvas id="testChart" width="400" height="400"></canvas>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" integrity="sha512-hZf9Qhp3rlDJBvAKvmiG+goaaKRZA6LKUO35oK6EsM0/kjPK32Yw7URqrq3Q+Nvbbt8Usss+IekL7CRn83dYmw==" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <script>
             var ctx = document.getElementById('testChart').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
@@ -14,7 +15,7 @@
                     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
                     datasets: [{
                         label: '# of Votes',
-                        data: [12, 6, 5, 8, 13, 7],
+                        data: [12, 19, 3, 5, 2, 3],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',

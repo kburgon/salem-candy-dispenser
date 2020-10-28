@@ -2,7 +2,9 @@
   "name": "salemstats",
   "main": "index.js",
   "dependencies": {
-    "chart.js": "^2.9.4"
+    "chart.js": "^2.9.4",
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.0"
   },
   "version": "1.0.0",
   "description": "Dashboard showing candy dispenser triggers",

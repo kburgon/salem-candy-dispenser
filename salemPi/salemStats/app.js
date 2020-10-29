@@ -17,29 +17,32 @@ router.get('/logs', (req, res) => {
 
         console.log('Connected to Database');
     });
+
     let query = 'SELECT loggedAt FROM trigger_log;';
-    var results = db.all(query, (err, rows) => {
+    db.all(query, (err, rows) => {
         if (err) {
             return console.error(err.message);
         }
 
         console.log('Getting results');
-        var res = new Array();
+        var results = new Array();
         rows.forEach((row) => {
             console.log('Result: ' + row.loggedAt);
-            res.push(row.loggedAt);
+            results.push(row.loggedAt);
         });
-        return res;
+        res.send({
+            data: results
+        });
     });
-    console.log(results);
+
     db.close((err) => {
         if (err) {
             return console.error(err.message);
         }
     });
-    res.send({
-        data: results
-    });
+    // res.send({
+    //     data: results
+    // });
 })
 
 app.use('/', router);

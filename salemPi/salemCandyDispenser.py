@@ -22,7 +22,7 @@ def run():
 
 def listen(arduino):
     # Listen for input
-    arduino.flush()
+    # arduino.flush()
     response = arduino.readline()
     decoded_response = str(response[0:len(response)-2].decode("utf-8"))
     print(decoded_response)
@@ -34,10 +34,12 @@ def listen(arduino):
         print('Candy triggered')
         arduino.write(str.encode(candy_triggered))
         play_sound()
-        arduino.writelines(str.encode(heartbeat_value))
+        arduino.write(str.encode(heartbeat_value))
         # log(trigger, time.now())
     else:
+        arduino.write(str.encode(heartbeat_value))
         raise BufferError('Arduino response invalid')
+        # arduino = serial.Serial(port, 9600, timeout=5)
 
 def play_sound():
     print('playing sound')

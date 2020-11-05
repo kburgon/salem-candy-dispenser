@@ -2,6 +2,7 @@ from SoundPlayer import SoundPlayer
 import serial
 import time
 import traceback
+import DbLogger
 
 player = SoundPlayer()
 heartbeat_value = '1'
@@ -13,6 +14,7 @@ def run():
     arduino = serial.Serial(port, 9600, timeout=5)
     time.sleep(2)
 
+    # Continuously loop, listening for and responding to arduino triggers
     while True:
         try:
             listen(arduino)
@@ -22,7 +24,6 @@ def run():
 
 def listen(arduino):
     # Listen for input
-    # arduino.flush()
     response = arduino.readline()
     decoded_response = str(response[0:len(response)-2].decode("utf-8"))
     print(decoded_response)
@@ -31,15 +32,18 @@ def listen(arduino):
     if decoded_response == heartbeat_value:
         print('Arduino Alive')
     elif decoded_response == candy_triggered:
-        print('Candy triggered')
-        arduino.write(str.encode(candy_triggered))
-        play_sound()
-        arduino.write(str.encode(heartbeat_value))
-        # log(trigger, time.now())
+        perform_action(arduino)
     else:
         arduino.write(str.encode(heartbeat_value))
         raise BufferError('Arduino response invalid')
-        # arduino = serial.Serial(port, 9600, timeout=5)
+
+def perform_action(arduino):
+    print('Candy triggered')
+    arduino.write(str.encode(candy_triggered))
+    play_sound()
+    arduino.write(str.encode(heartbeat_value))
+    DbLogger.log_trigger()
+
 
 def play_sound():
     print('playing sound')

@@ -18,7 +18,7 @@ router.get('/logs', (req, res) => {
         console.log('Connected to Database');
     });
 
-    let query = 'SELECT loggedAt FROM trigger_log;';
+    let query = 'SELECT DISTINCT DATE(loggedAt) AS Date, COUNT(id) AS Logs FROM trigger_log GROUP BY DATE(loggedAt);';
     db.all(query, (err, rows) => {
         if (err) {
             return console.error(err.message);
@@ -27,8 +27,11 @@ router.get('/logs', (req, res) => {
         console.log('Getting results');
         var results = new Array();
         rows.forEach((row) => {
-            console.log('Result: ' + row.loggedAt);
-            results.push(row.loggedAt);
+            console.log('Result: ' + row.Date);
+            results.push({
+                date: row.Date,
+                logs: row.Logs
+            });
         });
         res.send({
             data: results
@@ -40,9 +43,6 @@ router.get('/logs', (req, res) => {
             return console.error(err.message);
         }
     });
-    // res.send({
-    //     data: results
-    // });
 })
 
 app.use('/', router);
